@@ -1,23 +1,20 @@
-
-pipeline{
-    agent{
-        docker{
+pipeline {
+    agent {
+        docker {
             image "cypress/browsers:latest"
             args '--entrypoint='
         }
     }
-    stages{
-        
-        stage('test stage'){
-          steps{
-            echo 'hello from jenkinsfile'
-          }
-
+    stages {
+        stage('Test stage') {
+            steps {
+                echo 'Hello from Jenkinsfile'
+            }
         }
 
         stage('Install dependencies') {
             steps {
-                sh 'npm ci'   
+                sh 'npm ci'
             }
         }
 
@@ -26,8 +23,17 @@ pipeline{
                 sh 'npx cypress run'
             }
         }
-    post
-
     }
 
+    post {
+        always {
+            echo 'This will always run after the pipeline'
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
 }
