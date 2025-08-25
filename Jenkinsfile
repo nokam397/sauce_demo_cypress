@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/nokam397/sauce_demo_cypress'
+                git branch: 'main', url: 'https://github.com/nokam397/sauce_demo_cypress.git'
             }
         }
 
